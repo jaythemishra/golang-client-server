@@ -1,0 +1,6 @@
+image: dft-node
+network: yes
+config:
+  net: host
+  capabilities:
+    - all

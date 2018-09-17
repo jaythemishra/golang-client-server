@@ -1,0 +1,50 @@
+{
+  "acKind": "VMManifest",
+  "acVersion": "1.1.1",
+  "name": "dft-node-test",
+  "owner": {
+    "user": "testuser",
+    "group": "testgroup"
+  },
+  "eventHandlers": [],
+  "images": [
+    {
+      "imagename": "dft-node-test",
+      "maxsize": 62200000,
+      "readonly": false,
+      "preserve": true,
+      "target": "Disk",
+      "drvtype": "HDD"
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "networkA",
+      "directattach": false,
+      "privateip": false,
+      "acls": [
+        {
+          "matches": [
+            {
+              "type": "host",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+"VmMode" : "HV_HVM",
+"EnableVnc" : true,
+  "resources": [
+    {
+      "name": "cpus",
+      "value": 2
+    },
+    {
+      "name": "memory",
+      "value": 2048000
+    }
+  ]
+}
+

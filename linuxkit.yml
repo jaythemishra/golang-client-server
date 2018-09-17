@@ -1,0 +1,50 @@
+kernel:
+  image: zededa/kernel:0.5.0
+  cmdline: "console=tty0 console=ttyS0 console=ttyAMA0"
+init:
+  - linuxkit/init:v0.3
+  - linuxkit/runc:v0.3
+  - linuxkit/containerd:v0.3
+  - linuxkit/ca-certificates:v0.3
+  - linuxkit/getty:v0.3
+  - zededa/dom0-ztools:0.7.0
+onboot:
+  - name: sysctl
+    image: linuxkit/sysctl:v0.3
+  - name: dhcpcd
+    image: linuxkit/dhcpcd:v0.3
+    command: ["/sbin/dhcpcd", "--nobackground", "-f", "/dhcpcd.conf", "-1"]
+onshutdown:
+  - name: shutdown
+    image: busybox:latest
+    command: ["/bin/echo", "so long and thanks for all the fish"]
+services:
+  - name: rngd
+    image: linuxkit/rngd:v0.3
+  - name: nginx
+    image: nginx:1.13.8-alpine
+    capabilities:
+     - CAP_NET_BIND_SERVICE
+     - CAP_CHOWN
+     - CAP_SETUID
+     - CAP_SETGID
+     - CAP_DAC_OVERRIDE
+    binds:
+     - /etc/resolv.conf:/etc/resolv.conf
+  - name: dftNode
+    image: jaythemishra/dft-node:latest-amd64
+    capabilities:
+     - all
+    binds:
+     - /etc/resolv.conf:/etc/resolv.conf
+files:
+  - path: etc/containerd/config.toml
+    contents: |
+      state = "/run/containerd"
+      root = "/var/lib/containerd"
+      snapshotter = "io.containerd.snapshotter.v1.overlayfs"
+      differ = "io.containerd.differ.v1.base-diff"
+      subreaper = false
+      [grpc]
+      address = "/run/containerd/containerd.sock"
+
