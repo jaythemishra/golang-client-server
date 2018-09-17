@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zededa/zeddp/src/functionTracer/proto/dft"
+	"github.com/jaythemishra/golang-client-server/proto/dft"
 )
 
 /*type Job struct {

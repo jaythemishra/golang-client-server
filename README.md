@@ -4,13 +4,25 @@ This is a simple web server and client program written in Go. It allows the user
 
 ## Pre-requisites
 
-- Make sure you have `go` installed on your machine
+- Make sure you have `go` and `gorilla/mux` installed on your machine
 - Make sure you have `linuxkit`, `docker`, and `qemu` installed on your machine if you want to build the linuxkit package and VM
+
+## Getting gorilla/mux
+```bash
+go get -u github.com/gorilla/mux
+```
+
+## Cloning the repository in the right spot
+```bash
+cd $GOPATH/src
+mkdir -p github.com/jaythemishra
+cd github.com/jaythemishra
+git clone https://github.com/jaythemishra/golang-client-server
+```
 
 ## Building the Client and Server Programs
 
 ```bash
-git clone https://github.com/jaythemishra/golang-client-server
 cd golang-client-server/dftMgr
 go build
 cd .. && cd dftNode

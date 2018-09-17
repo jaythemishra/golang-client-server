@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/zededa/zeddp/src/functionTracer/proto/dft"
+	"github.com/jaythemishra/golang-client-server/proto/dft"
 )
 
 /*type Client struct {

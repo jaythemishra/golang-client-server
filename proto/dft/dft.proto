@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+message Task {
+	string task_id = 1;
+	string type = 2;
+	string repetitions = 3;
+	string destination = 4;
+	string timeout = 5;
+}
+
+message Job {
+    string client_id = 1;
+    string job_id = 2;
+	repeated Task tasks = 3;
+}
+
+message Client {
+	string client_id = 1;
+	repeated Job jobs = 2;
+}
+
+message Result {
+	string client_id = 1;
+	string job_id = 2;
+	string results = 3;
+}
